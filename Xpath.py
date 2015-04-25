@@ -1,23 +1,14 @@
 from twython import Twython
 from lxml import html
-import ConfigParser
+from secret import APP_KEY, APP_SECRET, OAUTH_TOKEN, OAUTH_TOKEN_SECRET
 import json
 import sys 
 import requests 
 import random
 import urllib2
 
-config = ConfigParser.ConfigParser()
-config.read('apikey.cfg')
-
-APP_KEY = config.get('DEFAULT', 'APP_KEY')
-APP_SECRET = config.get('DEFAULT', 'APP_SECRET')
-OAUTH_TOKEN = config.get('DEFAULT', 'OAUTH_TOKEN')
-OAUTH_TOKEN_SECRET = config.get('DEFAULT', 'OAUTH_TOKEN_SECRET')
-
-
 BASE_URL = "http://azlyrics.com/"
-ARTISTS_LIST = ["Nas", "Jayz"]
+ARTISTS_LIST = ["Nas", "Jayz", "ti"]
 
 def pick_artist(ARTISTS_LIST):
     selected_artist = random.choice(ARTISTS_LIST)
@@ -39,7 +30,7 @@ def pick_song(songs):
 def pull_lyrics(final_url):
 	page = requests.get(final_url)
 	tree = html.fromstring(page.text)
-	text = tree.xpath('/html/body/div[3]/div/div[2]/text()')
+	text = tree.xpath('/html/body/div[3]/div/div[2]/div[6]/text()')
 	text = [each.strip('\r\n') for each in text]
 	new = []
 	for each in text:
@@ -64,10 +55,10 @@ def assign_philosopher(lyrics_text):
 
 def tweet(polished_tweet):
     bot_api = Twython(
-        app_key=APP_KEY,
-        app_secret=APP_SECRET,
-        oauth_token=OAUTH_TOKEN,
-        oauth_token_secret=OAUTH_TOKEN_SECRET)
+        APP_KEY ,
+        APP_SECRET,
+        OAUTH_TOKEN,
+        OAUTH_TOKEN_SECRET)
 
     bot_api.update_status(status=polished_tweet)
 
@@ -78,7 +69,6 @@ def main():
 	lyrics = pull_lyrics(song)
 	cleaned_lyrics = clean(lyrics)
 	polished_tweet = assign_philosopher(cleaned_lyrics)
-	print polished_tweet
 	tweet(polished_tweet)
 
 if __name__ == '__main__':
