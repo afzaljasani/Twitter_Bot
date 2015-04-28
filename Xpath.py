@@ -7,10 +7,10 @@ import random
 import urllib2
 import time
 
-APP_KEY = os.environ['TWITTER_APP_KEY']
-APP_SECRET = os.environ['TWITTER_APP_SECRET']
-OAUTH_TOKEN = os.environ['TWITTER_OAUTH_TOKEN']
-OAUTH_TOKEN_SECRET = os.environ['TWITTER_OAUTH_TOKEN_SECRET']
+APP_KEY = os.getenv('TWITTER_APP_KEY')
+APP_SECRET = os.getenv('TWITTER_APP_SECRET')
+OAUTH_TOKEN = os.getenv('TWITTER_OAUTH_TOKEN')
+OAUTH_TOKEN_SECRET = os.getenv('TWITTER_OAUTH_TOKEN_SECRET')
 
 BASE_URL = "http://azlyrics.com/"
 ARTISTS_LIST = ["Nas", "Jayz", "ti"]
