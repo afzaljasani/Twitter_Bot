@@ -1,11 +1,11 @@
 from twython import Twython
 from lxml import html
 from secret import APP_KEY, APP_SECRET, OAUTH_TOKEN, OAUTH_TOKEN_SECRET
-import json
 import sys 
 import requests 
 import random
 import urllib2
+import time
 
 BASE_URL = "http://azlyrics.com/"
 ARTISTS_LIST = ["Nas", "Jayz", "ti"]
@@ -37,7 +37,7 @@ def pull_lyrics(final_url):
 		if each and each.strip():
 			new.append(each)
 	lyrics_text = random.choice(new)
-	while len(lyrics_text) < 120:
+	while len(lyrics_text) > 120:
 		return lyrics_text
 	return lyrics_text
 
@@ -63,13 +63,15 @@ def tweet(polished_tweet):
     bot_api.update_status(status=polished_tweet)
 
 def main():
-	artist = pick_artist(ARTISTS_LIST)
-	url = form_url(artist)
-	song = pick_song(url)
-	lyrics = pull_lyrics(song)
-	cleaned_lyrics = clean(lyrics)
-	polished_tweet = assign_philosopher(cleaned_lyrics)
-	tweet(polished_tweet)
+	while True:
+		artist = pick_artist(ARTISTS_LIST)
+		url = form_url(artist)
+		song = pick_song(url)
+		lyrics = pull_lyrics(song)
+		cleaned_lyrics = clean(lyrics)
+		polished_tweet = assign_philosopher(cleaned_lyrics)
+		tweet(polished_tweet)
+		time.sleep(4000)
 
 if __name__ == '__main__':
     main()
