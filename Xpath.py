@@ -76,7 +76,7 @@ def main():
 		cleaned_lyrics = clean(lyrics)
 		polished_tweet = assign_philosopher(cleaned_lyrics)
 		print polished_tweet
-		#tweet(polished_tweet)
+		tweet(polished_tweet)
 		time.sleep(4000)
 
 if __name__ == '__main__':
