@@ -35,7 +35,7 @@ def pick_song(songs):
 def pull_lyrics(final_url):
 	page = requests.get(final_url)
 	tree = html.fromstring(page.text)
-	text = tree.xpath('/html/body/div[3]/div/div[2]/div[6]/text()')
+	text = tree.xpath('/html/body/div[4]/div/div[2]/div[5]/text()')
 	text = [each.strip('\r\n') for each in text]
 	new = []
 	for each in text:
