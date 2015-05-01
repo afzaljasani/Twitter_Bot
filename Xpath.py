@@ -35,7 +35,7 @@ def pick_song(songs):
 def pull_lyrics(final_url):
 	page = requests.get(final_url)
 	tree = html.fromstring(page.text)
-	text = tree.xpath('/html/body/div[4]/div/div[2]/div[5]/text()')
+	text = tree.xpath('/html/body/div[3]/div/div[2]/div[5]/text()')
 	text = [each.strip('\r\n') for each in text]
 	new = []
 	for each in text:
@@ -75,7 +75,8 @@ def main():
 		lyrics = pull_lyrics(song)
 		cleaned_lyrics = clean(lyrics)
 		polished_tweet = assign_philosopher(cleaned_lyrics)
-		tweet(polished_tweet)
+		print polished_tweet
+		#tweet(polished_tweet)
 		time.sleep(4000)
 
 if __name__ == '__main__':
