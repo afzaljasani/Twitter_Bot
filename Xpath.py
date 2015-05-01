@@ -75,7 +75,6 @@ def main():
 		lyrics = pull_lyrics(song)
 		cleaned_lyrics = clean(lyrics)
 		polished_tweet = assign_philosopher(cleaned_lyrics)
-		print polished_tweet
 		tweet(polished_tweet)
 		time.sleep(4000)
 
