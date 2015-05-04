@@ -76,7 +76,7 @@ def main():
 		cleaned_lyrics = clean(lyrics)
 		polished_tweet = assign_philosopher(cleaned_lyrics)
 		tweet(polished_tweet)
-		time.sleep(4000)
+		time.sleep(random.choice([10800, 7200, 3600]))
 
 if __name__ == '__main__':
     main()
