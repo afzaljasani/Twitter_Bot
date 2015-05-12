@@ -53,7 +53,8 @@ def clean(lyrics_line):
 
 def assign_philosopher(lyrics_text):
 	philosophers = ["Aristotle", "Plato", "Paul of Tarsus", "Rene Descartes",
-	        "Confucius", "Thomas Aquinas", "Epicurus", "Nietzsche", "Kafka"]
+	        "Confucius", "Thomas Aquinas", "Epicurus", "Nietzsche", "Kafka", "Karl Marx",
+	        "John Locke", "Rousseau", "Jean-Paul Sartre", "Thomas Hobbes", "Voltaire", "Adam Smith"]
 	random_philosopher = random.choice(philosophers)
 	assigned_tweet = lyrics_text + " - " + random_philosopher
 	return assigned_tweet
