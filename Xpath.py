@@ -13,7 +13,7 @@ OAUTH_TOKEN = os.getenv('OAUTH_TOKEN')
 OAUTH_TOKEN_SECRET = os.getenv('OAUTH_TOKEN_SECRET')
 
 BASE_URL = "http://azlyrics.com/"
-ARTISTS_LIST = ["Nas", "Jayz", "ti"]
+ARTISTS_LIST = ["Nas", "Jayz", "ti", "pitbull", "yingyangtwins"]
 
 def pick_artist(ARTISTS_LIST):
     selected_artist = random.choice(ARTISTS_LIST)
